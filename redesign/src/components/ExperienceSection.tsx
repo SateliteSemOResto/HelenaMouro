@@ -5,6 +5,7 @@ import SelectionBox from "./SelectionBox";
 
 export default function ExperienceSection() {
   const [openIds, setOpenIds] = useState<string[]>(experiences.filter((e) => e.defaultOpen).map((e) => e.id));
+  const [visibleIds, setVisibleIds] = useState<string[]>([]);
   const [grown, setGrown] = useState(false);
   const section = useRef<HTMLElement>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
@@ -34,7 +35,8 @@ export default function ExperienceSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            const id = (entry.target as HTMLElement).dataset.id;
+            if (id) setVisibleIds((cur) => (cur.includes(id) ? cur : [...cur, id]));
             observer.unobserve(entry.target);
           }
         });
@@ -65,6 +67,7 @@ export default function ExperienceSection() {
             item={item}
             index={i}
             open={openIds.includes(item.id)}
+            visible={visibleIds.includes(item.id)}
             onToggle={toggle}
           />
         ))}
