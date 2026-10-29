@@ -5,14 +5,15 @@ type Props = {
   item: Experience;
   index: number;
   open: boolean;
+  visible: boolean;
   onToggle: (id: string) => void;
 };
 
 // One self-contained, reusable experience card.
-const ExperienceItem = forwardRef<HTMLLIElement, Props>(function ExperienceItem({ item, index, open, onToggle }, ref) {
+const ExperienceItem = forwardRef<HTMLLIElement, Props>(function ExperienceItem({ item, index, open, visible, onToggle }, ref) {
   const panelId = `${item.id}-panel`;
   return (
-    <li ref={ref} className={`exp-item ${open ? "is-open" : ""}`}>
+    <li ref={ref} data-id={item.id} className={`exp-item${open ? " is-open" : ""}${visible ? " is-visible" : ""}`}>
       <button
         type="button"
         className="exp-head"
