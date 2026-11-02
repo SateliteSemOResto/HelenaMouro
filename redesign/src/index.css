@@ -41,10 +41,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .drag{position:relative;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;z-index:0;outline:none}
 .drag.is-dragging{cursor:grabbing}
 .drag:focus-visible .sel-box{box-shadow:0 0 0 3px rgba(21,178,226,.35)}
+.rotate-handle{position:absolute;left:50%;top:-22px;width:14px;height:14px;padding:0;border:1px solid var(--blue);border-radius:50%;background:#fff;transform:translateX(-50%);cursor:alias;z-index:3}
+.rotate-handle::after{content:"";position:absolute;left:50%;top:12px;width:1px;height:9px;background:var(--blue)}
 .role{position:relative;padding:.12em .28em .18em;z-index:0}
 .role .sel-box{position:relative;z-index:0}
 .role span{position:relative;z-index:1;font:400 clamp(54px,8.6vw,132px)/.9 var(--serif);letter-spacing:-.05em;display:block}
-.drag-hint{position:absolute;right:34px;top:-10px;transform:rotate(9deg);font:500 14px/1 var(--sans);letter-spacing:.08em;color:rgba(88,77,74,.58);pointer-events:none;opacity:0;filter:blur(.2px);animation:drag-hint-fade 4.4s ease-in-out 1 normal forwards}
+.drag-hint{position:absolute;right:-12px;top:-10px;transform:rotate(9deg);font:500 14px/1 var(--sans);letter-spacing:.08em;color:rgba(88,77,74,.58);pointer-events:none;opacity:0;filter:blur(.2px);animation:drag-hint-fade 4.4s ease-in-out 1 normal forwards}
 @keyframes drag-hint-fade{0%{opacity:0;transform:rotate(9deg) translateY(4px)}18%{opacity:.82;transform:rotate(9deg) translateY(0)}62%{opacity:.72;transform:rotate(9deg) translateY(0)}100%{opacity:0;transform:rotate(9deg) translateY(-2px)}}
 .hero-title{position:relative;z-index:2;pointer-events:none;margin:clamp(-48px,-3.4vw,0px) calc(var(--pad) * -1) 0;font-family:var(--serif);font-weight:400;line-height:.8;white-space:nowrap;overflow:visible}
 .hero-title-text{display:inline-block;letter-spacing:-.075em;line-height:.8;opacity:.78;filter:blur(1.1px) saturate(.9);text-shadow:0 0 clamp(3px,.6vw,9px) rgba(88,77,74,.18)}
@@ -85,7 +87,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .exp-text li{padding-left:1.1em;position:relative;margin-bottom:.35em;text-align:left}
 .exp-text li::before{content:'↳';position:absolute;left:0;color:var(--blue)}
 .exp-media{align-self:start}
-.exp-media img,.exp-placeholder{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#d9d9d9}
+.exp-media img,.exp-placeholder{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#d9d9d9;border:2px solid var(--blue)}
 
 /* ── tools ── */
 .tools{position:relative;margin-top:clamp(40px,8vw,120px);padding:clamp(130px,17vw,260px) 0 clamp(240px,31vw,470px);scroll-margin-top:0;color:var(--tools-text)}
@@ -145,12 +147,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   /* roles sit under the name, behind it, stacked */
   .hero-roles{order:2;height:38vw;margin-top:1vw}
-  .role-pair{left:4%;transform:none;flex-direction:column;align-items:flex-start;top:2vw}
+  .role-pair{left:4%;transform:none;flex-direction:column;align-items:flex-start;top:7vw}
   .role span{font-size:13.6vw}
   .role-pair .drag:nth-child(1){margin-left:-2vw!important}
-  .role-pair .drag:nth-child(2){margin-left:15vw!important;margin-top:2.2vw!important}
-  .role-pair .drag:nth-child(2) .sel-box{transform:rotate(1deg)!important}
-  .role-pair .drag:nth-child(1) .sel-box{transform:rotate(-3deg)!important}
+  .role-pair .drag:nth-child(2){margin-left:19vw!important;margin-top:5vw!important}
 
   /* nav → diagonal staircase */
   .nav{padding-top:14vw}

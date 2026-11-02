@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 
-// Desktop: one line, scaled slightly wider than the screen (edges cropped).
-// Mobile (≤700px): two lines — "Helena" left, "Mouro" right — like the phone design.
+// Desktop: one line. Mobile (≤700px): two lines — "Helena" left, "Mouro" right.
 export default function FitTitle({ id }: { id?: string }) {
   const text = useRef<HTMLSpanElement>(null);
   const first = useRef<HTMLSpanElement>(null);
@@ -15,9 +14,9 @@ export default function FitTitle({ id }: { id?: string }) {
       s.style.fontSize = "950px";
       const natural = (mobile ? a : s).getBoundingClientRect().width;
       if (!natural) return;
-      const target = mobile ? vw * 6.0 : vw * 7.9;
-      s.style.fontSize = `${(100 * target) / natural}px`;
-      s.style.marginLeft = mobile ? "0px" : `${-0.05 * vw}px`;
+      const target = vw * 1.03;
+      s.style.fontSize = `${(950 * target) / natural}px`;
+      s.style.marginLeft = `${-0.029 * vw}px`;
     };
     fit();
     document.fonts?.ready.then(fit);
